@@ -7,7 +7,7 @@ const router = new Router();
 //post запрос по url registration
 //второй параметр - массив
 //третий параметр - функция, принимающая запрос и ответ
-router.post (
+/* router.post (
 	'/registration', 
 
 	[
@@ -39,6 +39,9 @@ router.post (
 			res.send({message: "Server error"});	//ответ пользователю
 		}
 	}
-)
+) */
+router.post('/registration',(req,res,next)=>{
+	console.log('hello world')
+	});
 
 module.export = router;
