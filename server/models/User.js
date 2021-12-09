@@ -12,4 +12,4 @@ const User = new Schema({
 	files : [{type: ObjectId, ref:'File'}]
 });
 
-model.exports = model('User', User);
+module.exports = model('User', User);

@@ -7,7 +7,7 @@ const router = new Router();
 //post запрос по url registration
 //второй параметр - массив
 //третий параметр - функция, принимающая запрос и ответ
-/* router.post (
+router.post (
 	'/registration', 
 
 	[
@@ -26,7 +26,7 @@ const router = new Router();
 			}
 
 			const {email, password} = req.body	//параметры из тела запроса
-			const candidate = await User.findOne({email})	//существует ли такой пользователь в базе
+			const candidate = await User.findOne({email});	//существует ли такой пользователь в базе
 
 			if(candidate) return res.status(400).json({message: `User with email ${email} already exist`});
 			const hashPassword = await bcrypt.hash(password, 15);	//функция hash - асинхронная
@@ -39,9 +39,6 @@ const router = new Router();
 			res.send({message: "Server error"});	//ответ пользователю
 		}
 	}
-) */
-router.post('/registration',(req,res,next)=>{
-	console.log('hello world')
-	});
+)
 
-module.export = router;
+module.exports = router;
