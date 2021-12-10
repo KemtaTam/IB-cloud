@@ -4,7 +4,9 @@ const config = require("config");
 const authRouter = require("./routes/auth.routes"); //импортируем роутер
 const app = express();	//создаем сам сервер
 const PORT = config.get('serverPort');	//номер порта, на котором будет работать сервер (взяли его по ключу из default.json)
+const corsMiddleware = require('./middleware/cors.middleware');
 
+app.use(corsMiddleware);
 app.use(express.json());
 //первый параметр - url, второй - сам роутер
 app.use("/api/auth", authRouter);
