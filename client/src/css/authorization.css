@@ -1,4 +1,4 @@
-.registration {
+.authorization {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -17,14 +17,14 @@
       align-self: center;
   margin-top: 100px;
 }
-.registration__header {
+.authorization__header {
   font-size: 30px;
   font-weight: 700;
 }
-.registration input {
+.authorization input {
   margin: 10px 20px;
 }
-.registration__btn {
+.authorization__btn {
   border: none;
   background-color: white;
   border-radius: 8px;
@@ -35,7 +35,7 @@
   margin-top: 10px;
   cursor: pointer;
 }
-.registration__btn:hover {
+.authorization__btn:hover {
   -webkit-transform: scale(1.03);
           transform: scale(1.03);
-}/*# sourceMappingURL=registration.css.map */
+}/*# sourceMappingURL=authorization.css.map */

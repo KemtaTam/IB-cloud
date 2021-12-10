@@ -1,23 +1,36 @@
-import React from 'react';
-import Navbar from "./navbar/Navbar";
 import '../css/app.css'
+import React, {useEffect} from 'react';
+import Navbar from "./navbar/Navbar";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Registration from "./registration/Registration";
+import Registration from "./authorization/Authorization";
+import Login from "./authorization/Login";
+import {useDispatch, useSelector} from "react-redux";
+import {auth} from "../actions/user";
 
 function App() {
-  return (
-      <BrowserRouter>
-          <div className='app'>
-              <Navbar/>
-              <div className="wrap">
-			 	  <Registration/>			{/* ?????????????????? */}
-                  <Routes>
-                      <Route path="/registration" component={Registration}/>
-                  </Routes>
-              </div>
-          </div>
-      </BrowserRouter>
-  );
+	const isAuth = useSelector(state => state.user.isAuth);	//хук из redux
+	const dispatch = useDispatch();	//хук
+
+	//хук, первым параметром принимает функцию, вторым массив зависимостей
+	useEffect(() => {
+        dispatch(auth())
+    }, [])
+
+	return (
+		<BrowserRouter>
+			<div className="app">
+				<Navbar />
+				<div className="wrap">
+					{!isAuth &&
+						<Routes>
+							<Route path="/registration" element={<Registration />}></Route>
+							<Route path="/login" element={<Login />}></Route>
+						</Routes>
+					}
+				</div>
+			</div>
+		</BrowserRouter>
+	);
 }
 
 export default App;

@@ -5,6 +5,7 @@ const config = require("config");
 const jwt = require("jsonwebtoken");
 const {check, validationResult} = require("express-validator");	//валидация данных, чтобы скипать пустые пароли или невалидные маийлы
 const router = new Router();
+const authMiddleware = require('../middleware/auth.middleware');
 
 //post запрос по url registration
 //второй параметр - массив
@@ -57,6 +58,30 @@ router.post ('/login',
 			//первый параметр - объект с данными, которые хотим поместить в токен
 			//второй параметр - секретный ключ из папки config
 			//третий параметр - объект, указывающий сколько времени токен будет существовать
+			const token = jwt.sign({id: user.id}, config.get("secretKey"), {expiresIn: "1h"});	//создание токена
+			//после создания токена его необходимо вернуть обратно на клиент
+			return res.json({
+				token,
+				user: {
+					id: user.id,
+					email: user.email,
+					diskSpace: user.diskSpace,
+					usedSpace: user.usedSpace,
+					avatar: user.avatar
+				}
+			})
+		} catch (error) {
+			console.log(error); 
+			res.send({message: "Server error"});	//ответ пользователю
+		}
+	}
+)
+
+router.get ('/auth', authMiddleware,
+	async (req, res) => {
+		try {
+			//получим пользователя по тому id, который достали из токена
+			const user = await User.findOne({_id: req.user.id});
 			const token = jwt.sign({id: user.id}, config.get("secretKey"), {expiresIn: "1h"});	//создание токена
 			//после создания токена его необходимо вернуть обратно на клиент
 			return res.json({
