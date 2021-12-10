@@ -1,5 +1,5 @@
 {
 	"serverPort": 5000,
-	"dbUrl": "mongodb+srv://maxim:maxim@cloud.nm7v2.mongodb.net/cloud?retryWrites=true&w=majority",
-	"secretKey": "mern-secret-key"
+	"dbUrl": "",
+	"secretKey": ""
 }
