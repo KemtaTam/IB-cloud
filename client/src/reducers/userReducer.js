@@ -7,7 +7,6 @@ const defaultState = {
 	isAuth: false
 }
 
-//первый параметр - состояние, второй - action
 export default function userReducer(state = defaultState, action){	//сам редьюсер
 	switch (action.type) {
 		case SET_USER:
